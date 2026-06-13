@@ -1,4 +1,3 @@
-
 def input_matriks():            # Fungsi buat input angka matriks 3x3 manual lewat keyboard
     print("Masukkan elemen matriks 3x3:")
     matriks = []
