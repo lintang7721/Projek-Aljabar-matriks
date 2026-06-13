@@ -1,30 +1,28 @@
 # Program utama untuk memanggil fungsi dari modul alin075
-
 import alin075
 
-# Input matriks uji coba (bisa kamu ganti angkanya kalau mau)
-matriks_alin = [
-    [3, 2, 1],
-    [1, 0, 2],
-    [4, 1, 3]
-]
+print("   DEMO PROGRAM - ALIN (075)\n")
 
-print("=====================================")
-print("     DEMO PROGRAM - ALIN (075)       ")
-print("=====================================")
-print("Matriks Awal:")
-for baris in matriks_alin:
-    print(baris)
+# 1. Input Matriks A dan B lewat keyboard
+print("INPUT MATRIKS A")
+matriks_A = alin075.input_matriks()
 
-# 1. Panggil fungsi hitung determinan [cite: 3]
-hasil_det = alin075.determinan_3x3(matriks_alin)
-print(f"\nNilai Determinan: {hasil_det}")
+print("\nINPUT MATRIKS B")
+matriks_B = alin075.input_matriks()
 
-# 2. Panggil fungsi hitung invers [cite: 3]
-hasil_invers = alin075.invers_3x3(matriks_alin)
+# 2. Tampilkan Matriks yang udah diinput
+print("\nMatriks A:")
+alin075.tampilkan_matriks(matriks_A)
 
-print("\nHasil Invers Matriks:")
-if hasil_invers is not None:
-    for baris in hasil_invers:
-        print(baris)
-print("=====================================")
+print("\nMatriks B:")
+alin075.tampilkan_matriks(matriks_B)
+
+# 3. Hitung dan Tampilkan Hasil Transpose Matriks A
+print("\nHasil Transpose Matriks A:")
+hasil_transpose = alin075.transpose_matriks(matriks_A)
+alin075.tampilkan_matriks(hasil_transpose)
+
+# 4. Hitung dan Tampilkan Hasil Perkalian A x B
+print("\nHasil Perkalian Matriks A x B:")
+hasil_kali = alin075.perkalian_matriks(matriks_A, matriks_B)
+alin075.tampilkan_matriks(hasil_kali)
