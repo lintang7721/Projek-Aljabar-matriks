@@ -1,0 +1,54 @@
+# nama file: alin075.py
+# UAS Struktur Data - Alin (2515061075)
+
+def determinan_3x3(matriks):
+    # Validasi input untuk mencegah error jika ukurannya salah
+    if len(matriks) != 3 or len(matriks[0]) != 3:
+        print("Error: Input harus berupa matriks 3x3!")
+        return None
+        
+    # Mengambil setiap elemen matriks secara manual
+    a, b, c = matriks[0][0], matriks[0][1], matriks[0][2]
+    d, e, f = matriks[1][0], matriks[1][1], matriks[1][2]
+    g, h, i = matriks[2][0], matriks[2][1], matriks[2][2]
+    
+    # Hitung dengan Metode Sarrus
+    det = (a*e*i + b*f*g + c*d*h) - (c*e*g + a*f*h + b*d*i)
+    return det
+
+
+def invers_3x3(matriks):
+    # Hitung nilai determinan dulu lewat fungsi di atas
+    det = determinan_3x3(matriks)
+    
+    # Antisipasi error pembagian dengan nol (Matriks Singular)
+    if det == 0 or det is None:
+        print("Matriks Singular! Tidak bisa di-invers karena nilai determinan = 0.")
+        return None
+        
+    a, b, c = matriks[0][0], matriks[0][1], matriks[0][2]
+    d, e, f = matriks[1][0], matriks[1][1], matriks[1][2]
+    g, h, i = matriks[2][0], matriks[2][1], matriks[2][2]
+    
+    # Langkah 1: Cari matriks kofaktor
+    kofaktor = [
+        [(e*i - f*h), -(d*i - f*g), (d*h - e*g)],
+        [-(b*i - c*h), (a*i - c*g), -(a*h - b*g)],
+        [(b*f - c*e), -(a*f - c*d), (a*e - b*d)]
+    ]
+    
+    # Langkah 2: Buat matriks adjoin (Transpose dari kofaktor)
+    adjoin = [
+        [kofaktor[0][0], kofaktor[1][0], kofaktor[2][0]],
+        [kofaktor[0][1], kofaktor[1][1], kofaktor[2][1]],
+        [kofaktor[0][2], kofaktor[1][2], kofaktor[2][2]]
+    ]
+    
+    # Langkah 3: Bagi setiap elemen adjoin dengan nilai determinan
+    invers = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    for r in range(3):
+        for c_idx in range(3):
+            # Dibulatkan 4 angka di belakang koma agar hasilnya bersih di terminal
+            invers[r][c_idx] = round(adjoin[r][c_idx] / det, 4)
+            
+    return invers
